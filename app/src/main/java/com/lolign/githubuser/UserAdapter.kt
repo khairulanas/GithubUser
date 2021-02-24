@@ -35,15 +35,15 @@ class UserAdapter internal constructor(private val context:Context): BaseAdapter
     }
 }
 
-private class ViewHolder internal constructor(view: View) {
+private class ViewHolder constructor(view: View) {
     private val txtUsername:TextView = view.findViewById(R.id.txt_username)
     private val txtName:TextView = view.findViewById(R.id.txt_name)
     private val imgPhoto:ImageView = view.findViewById(R.id.img_photo)
 
-    internal fun bind(user:User){
+    fun bind(user:User){
         txtUsername.text = user.username
         txtName.text = user.name
-        imgPhoto.setImageResource(user.avatar)
+        imgPhoto.setImageResource(user.avatar!!)
     }
 
 }

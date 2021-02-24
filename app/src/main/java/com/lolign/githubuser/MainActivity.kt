@@ -1,10 +1,10 @@
 package com.lolign.githubuser
 
+import android.content.Intent
 import android.content.res.TypedArray
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
 
@@ -35,6 +35,9 @@ class MainActivity : AppCompatActivity() {
 
         listView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
             Toast.makeText(this, users[position].name, Toast.LENGTH_SHORT).show()
+            val detailIntent = Intent(this,DetailActivity::class.java)
+            detailIntent.putExtra(DetailActivity.EXTRA_USER, users[position])
+            startActivity(detailIntent)
         }
     }
 

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import de.hdodenhof.circleimageview.CircleImageView
 
 class UserAdapter internal constructor(private val context:Context): BaseAdapter() {
     internal var users = arrayListOf<User>()
@@ -38,7 +39,7 @@ class UserAdapter internal constructor(private val context:Context): BaseAdapter
 private class ViewHolder constructor(view: View) {
     private val txtUsername:TextView = view.findViewById(R.id.txt_username)
     private val txtName:TextView = view.findViewById(R.id.txt_name)
-    private val imgPhoto:ImageView = view.findViewById(R.id.img_photo)
+    private val imgPhoto:CircleImageView = view.findViewById(R.id.img_photo)
 
     fun bind(user:User){
         txtUsername.text = user.username

@@ -2,6 +2,7 @@
     <string name="app_name">GithubUser</string>
     <string name="username_default">Username</string>
     <string name="name_default">nama user</string>
+    <string name="username">Username</string>
 
     <string-array name="username">
         <item>JakeWharton</item>

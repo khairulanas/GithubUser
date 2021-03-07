@@ -83,7 +83,7 @@ class FollowingFragment : Fragment() {
 
     private fun getListFollowingFollowers(index: Int?,username: String?){
         val client = AsyncHttpClient()
-        client.addHeader("Authorization", "token 5a57c5f1403b2d255d46af7a99f38981aa1e07c0")
+        client.addHeader("Authorization", "token ea31f1842de819a73fdad4a6207fccfa1638ef2a")
         client.addHeader("User-Agent", "request")
 
         val url = if(index==1){

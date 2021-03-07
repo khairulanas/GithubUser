@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
         binding.tvStart.visibility = View.INVISIBLE
 
         val client = AsyncHttpClient()
-        client.addHeader("Authorization", "token 43a5b98e1ff1e93a4db19a4e16714b37f667f9c0")
+        client.addHeader("Authorization", "token ae368ab72ca389b4ed3660c9b4619ba47712556c")
         client.addHeader("User-Agent", "request")
         val url = "https://api.github.com/search/users?q=${query}"
         client.get(url, object : AsyncHttpResponseHandler(){

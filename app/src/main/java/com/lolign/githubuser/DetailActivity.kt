@@ -28,7 +28,7 @@ class DetailActivity : AppCompatActivity() {
         val txtFollowing:TextView = findViewById(R.id.txt_Following)
 
         val user = intent.getParcelableExtra<User>(EXTRA_USER) as User
-        imgPhoto.setImageResource(user.avatar!!)
+//        imgPhoto.setImageResource(user.avatar!!)
         txtUsername.text =": "+ user.username
         txtName.text =": "+ user.name
         txtCompany.text =": "+ user.company

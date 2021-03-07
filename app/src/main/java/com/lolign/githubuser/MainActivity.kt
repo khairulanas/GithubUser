@@ -1,71 +1,73 @@
 package com.lolign.githubuser
 
+
 import android.content.Intent
-import android.content.res.TypedArray
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.AdapterView
-import android.widget.ListView
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.lolign.githubuser.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var adapter: UserAdapter
-    private lateinit var dataUsername:Array<String>
-    private lateinit var dataName:Array<String>
-    private lateinit var dataPhoto:TypedArray
-
-    private lateinit var dataCompany:Array<String>
-    private lateinit var dataLocation:Array<String>
-    private lateinit var dataRepository:Array<String>
-    private lateinit var dataFollowers:Array<String>
-    private lateinit var dataFollowing:Array<String>
-    private var users = arrayListOf<User>()
+    private lateinit var binding: ActivityMainBinding
+    private val list = ArrayList<User>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val listView:ListView = findViewById(R.id.lv_list)
-        adapter = UserAdapter(this)
-        listView.adapter = adapter
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        binding.rvUsers.setHasFixedSize(true)
 
-        prepare()
-        addItem()
-
-        listView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
-            Toast.makeText(this, users[position].name, Toast.LENGTH_SHORT).show()
-            val detailIntent = Intent(this,DetailActivity::class.java)
-            detailIntent.putExtra(DetailActivity.EXTRA_USER, users[position])
-            startActivity(detailIntent)
-        }
+        list.addAll(getListUsers())
+        showRecyclerList()
     }
 
-    private fun addItem() {
-        for (position in dataUsername.indices){
+    private fun showSelectedUser(user: User) {
+        Toast.makeText(this, "${user.name}", Toast.LENGTH_SHORT).show()
+        val detailIntent = Intent(this,DetailActivity::class.java)
+            detailIntent.putExtra(DetailActivity.EXTRA_USER, user)
+            startActivity(detailIntent)
+    }
+
+    private fun getListUsers(): ArrayList<User> {
+        val dataUsername = resources.getStringArray(R.array.username)
+        val dataName = resources.getStringArray(R.array.name)
+        val dataPhoto = resources.getStringArray(R.array.avatar)
+        val dataCompany = resources.getStringArray(R.array.company)
+        val dataLocation= resources.getStringArray(R.array.location)
+        val dataRepository= resources.getStringArray(R.array.repository)
+        val dataFollowers= resources.getStringArray(R.array.followers)
+        val dataFollowing= resources.getStringArray(R.array.following)
+
+        val listUser = ArrayList<User>()
+        for (position in dataUsername.indices) {
             val user = User(
                 dataUsername[position],
                 dataName[position],
-                dataPhoto.getResourceId(position,-1),
+                dataPhoto[position],
                 dataCompany[position],
                 dataLocation[position],
                 dataRepository[position],
                 dataFollowers[position],
                 dataFollowing[position],
             )
-            users.add(user)
+            listUser.add(user)
         }
-        adapter.users = users
+        return listUser
     }
 
-    private fun prepare() {
-        dataUsername = resources.getStringArray(R.array.username)
-        dataName = resources.getStringArray(R.array.name)
-        dataPhoto = resources.obtainTypedArray(R.array.avatar)
-        dataCompany = resources.getStringArray(R.array.company)
-        dataLocation= resources.getStringArray(R.array.location)
-        dataRepository= resources.getStringArray(R.array.repository)
-        dataFollowers= resources.getStringArray(R.array.followers)
-        dataFollowing= resources.getStringArray(R.array.following)
+    private fun showRecyclerList() {
+        binding.rvUsers.layoutManager = LinearLayoutManager(this)
+        val listUserAdapter = ListUserAdapter(list)
+        binding.rvUsers.adapter = listUserAdapter
+
+        listUserAdapter.setOnItemClickCallback(object : ListUserAdapter.OnItemClickCallback{
+            override fun onItemClicked(data: User) {
+                showSelectedUser(data)
+            }
+        })
     }
 }

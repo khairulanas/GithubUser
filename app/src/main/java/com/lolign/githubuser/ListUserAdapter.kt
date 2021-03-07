@@ -26,7 +26,7 @@ class ListUserAdapter(private val listUser: ArrayList<User>) : RecyclerView.Adap
                         .apply(RequestOptions().override(55, 55))
                         .into(imgPhoto)
                 txtUsername.text = user.username
-                txtName.text = user.name
+                txtName.text = "${user.id}"
 
                 itemView.setOnClickListener { onItemClickCallback?.onItemClicked(user) }
             }

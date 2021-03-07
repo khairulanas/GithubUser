@@ -31,11 +31,7 @@ class DetailActivity : AppCompatActivity() {
         val user = intent.getParcelableExtra<User>(EXTRA_USER) as User
         Glide.with(this).load(user.avatar).into(imgPhoto)
         txtUsername.text =": "+ user.username
-        txtName.text =": "+ user.name
-        txtCompany.text =": "+ user.company
-        txtLocation.text =": "+ user.location
-        txtRepository.text =": "+ user.repository
-        txtFollowers.text =": "+ user.followers
-        txtFollowing.text =": "+ user.following
+        txtName.text =": "+ user.id
+
     }
 }

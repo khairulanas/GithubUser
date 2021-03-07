@@ -3,6 +3,8 @@
     <string name="username_default">Username</string>
     <string name="name_default">nama user</string>
     <string name="username">Username</string>
+    <string name="search">Search github user</string>
+    <string name="search_hint">Search github user</string>
 
     <string-array name="username">
         <item>JakeWharton</item>

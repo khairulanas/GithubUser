@@ -87,8 +87,6 @@ class MainActivity : AppCompatActivity() {
             override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray) {
                 binding.progressBar.visibility = View.INVISIBLE
 
-
-
                 val result = String(responseBody)
                 Log.d(TAG, result)
 
@@ -140,10 +138,7 @@ class MainActivity : AppCompatActivity() {
                 Log.d(TAG, result)
                 Toast.makeText(this@MainActivity, errorMessage, Toast.LENGTH_SHORT).show()
             }
-
         })
-
-
     }
 
     private fun showRecyclerList() {

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import de.hdodenhof.circleimageview.CircleImageView
 
 class DetailActivity : AppCompatActivity() {
@@ -28,7 +29,7 @@ class DetailActivity : AppCompatActivity() {
         val txtFollowing:TextView = findViewById(R.id.txt_Following)
 
         val user = intent.getParcelableExtra<User>(EXTRA_USER) as User
-//        imgPhoto.setImageResource(user.avatar!!)
+        Glide.with(this).load(user.avatar).into(imgPhoto)
         txtUsername.text =": "+ user.username
         txtName.text =": "+ user.name
         txtCompany.text =": "+ user.company

@@ -1,5 +1,6 @@
 package com.lolign.githubuser
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
@@ -64,14 +65,15 @@ class DetailActivity : AppCompatActivity() {
         client.addHeader("User-Agent", "request")
         val url = "https://api.github.com/users/${username}"
         client.get(url, object : AsyncHttpResponseHandler(){
-            override fun onSuccess(statusCode: Int,headers: Array<out Header>?,responseBody: ByteArray) {
+            @SuppressLint("SetTextI18n")
+            override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray) {
                 val result = String(responseBody)
                 try {
                     val responseObject = JSONObject(result)
                     txtName.text = responseObject.getString("name")
                     txtLocation.text = responseObject.getString("location")
                     txtCompany.text = responseObject.getString("company")
-                    txtRepo.text = responseObject.getString("public_repos")
+                    txtRepo.text = responseObject.getString("public_repos")+" Repository"
 
                 } catch (e: Exception) {
                     Toast.makeText(this@DetailActivity, e.message, Toast.LENGTH_SHORT).show()

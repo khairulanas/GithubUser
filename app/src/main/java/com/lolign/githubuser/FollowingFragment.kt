@@ -42,7 +42,7 @@ class FollowingFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentFollowingBinding.inflate(inflater, container, false)
         return binding.root
@@ -82,6 +82,7 @@ class FollowingFragment : Fragment() {
     }
 
     private fun getListFollowingFollowers(index: Int?,username: String?){
+        binding.progressBar2.visibility = View.VISIBLE
         val client = AsyncHttpClient()
         client.addHeader("Authorization", "ea31f1842de819a73fdad4a6207fccfa1638ef2a")
         client.addHeader("User-Agent", "request")
@@ -93,6 +94,7 @@ class FollowingFragment : Fragment() {
         }
         client.get(url, object : AsyncHttpResponseHandler(){
             override fun onSuccess(statusCode: Int,headers: Array<out Header>?,responseBody: ByteArray) {
+                binding.progressBar2.visibility = View.INVISIBLE
                 val result = String(responseBody)
 
                 try {

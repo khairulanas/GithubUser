@@ -60,7 +60,7 @@ class DetailActivity : AppCompatActivity() {
 
     private fun getUserDetail(username:String?){
         val client = AsyncHttpClient()
-        client.addHeader("Authorization", "token ea31f1842de819a73fdad4a6207fccfa1638ef2a")
+        client.addHeader("Authorization", "ea31f1842de819a73fdad4a6207fccfa1638ef2a")
         client.addHeader("User-Agent", "request")
         val url = "https://api.github.com/users/${username}"
         client.get(url, object : AsyncHttpResponseHandler(){
